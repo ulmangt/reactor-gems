@@ -39,6 +39,17 @@ public class Exercise6
     }
 
     /**
+     * Implement {@code concatMap} using {@code flatMap}.
+     *
+     * Calling {@code concatMapUsingFlatMap( source, mapper )} should return the same sequence {@code source.concatMap( mapper)}
+     * but implemented calling {@code flatMap} instead of {@code concatMap}.
+     */
+    public static <T,R> Flux<R> concatMapUsingFlatMap( Flux<T> source, Function<? super T,? extends Publisher<? extends R>> mapper )
+    {
+        return source.flatMap( mapper, 1 );
+    }
+
+    /**
      * Implement {@code flatMap} using {@code merge} and {@code map}.
      *
      * Calling {@code flatMapUsingMerge( source, mapper )} should return the same sequence {@code source.flatMap( mapper)}

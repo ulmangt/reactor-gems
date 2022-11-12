@@ -40,7 +40,7 @@ public class Exercise6Test extends TestCase
         mapUsingFlatMapHelper( Flux.range( 0, 10 ), value -> "Sloth".repeat( value ) );
     }
 
-    protected <T,R> void mapUsingFlatMapHelper( Flux<T> source, Function<? super T, ? extends R> mapper )
+    protected <T, R> void mapUsingFlatMapHelper( Flux<T> source, Function<? super T, ? extends R> mapper )
     {
         Flux<R> resultActual = Exercise6.mapUsingFlatMap( source, mapper );
         Flux<R> resultExpected = source.map( mapper );
@@ -67,6 +67,32 @@ public class Exercise6Test extends TestCase
     {
         Flux<T> resultActual = Exercise6.filterUsingFlatMap( source, predicate );
         Flux<T> resultExpected = source.filter( predicate );
+
+        Utilities.assertEqual( true, resultActual, resultExpected );
+    }
+
+    public void testConcatMapUsingFlatMap1( )
+    {
+        concatMapUsingFlatMapHelper( Flux.just( "Sloth", "Cheetah", "Snail" ), animal ->
+        {
+            return Flux.fromArray( animal.split( "" ) ).delayElements( Duration.ofMillis( 10 ) );
+        } );
+    }
+
+    public void testConcatMapUsingFlatMap2( )
+    {
+        concatMapUsingFlatMapHelper( Flux.empty( ), value -> Flux.empty( ) );
+    }
+
+    public void testConcatMapUsingFlatMap3( )
+    {
+        concatMapUsingFlatMapHelper( Flux.range( 0, 10 ), value -> Flux.range( 0, value ).delayElements( Duration.ofMillis( 11 - value ) ) );
+    }
+
+    protected <T, R> void concatMapUsingFlatMapHelper( Flux<T> source, Function<? super T, ? extends Publisher<? extends R>> mapper )
+    {
+        Flux<R> resultActual = Exercise6.concatMapUsingFlatMap( source, mapper );
+        Flux<R> resultExpected = source.concatMap( mapper );
 
         Utilities.assertEqual( true, resultActual, resultExpected );
     }
