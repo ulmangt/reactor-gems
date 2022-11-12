@@ -3,6 +3,7 @@ package com.github.ulmangt.reactorgems;
 import java.time.Duration;
 import java.util.Arrays;
 import java.util.function.Function;
+import java.util.function.Predicate;
 
 import org.reactivestreams.Publisher;
 
@@ -22,6 +23,52 @@ public class Exercise6Test extends TestCase
     public static Test suite( )
     {
         return new TestSuite( Exercise6Test.class );
+    }
+
+    public void testMapUsingFlatMap1( )
+    {
+        mapUsingFlatMapHelper( Flux.just( "Sloth", "Cheetah", "Snail" ), animal -> animal.length( ) );
+    }
+
+    public void testMapUsingFlatMap2( )
+    {
+        mapUsingFlatMapHelper( Flux.empty( ), value -> Flux.empty( ) );
+    }
+
+    public void testMapUsingFlatMap3( )
+    {
+        mapUsingFlatMapHelper( Flux.range( 0, 10 ), value -> "Sloth".repeat( value ) );
+    }
+
+    protected <T,R> void mapUsingFlatMapHelper( Flux<T> source, Function<? super T, ? extends R> mapper )
+    {
+        Flux<R> resultActual = Exercise6.mapUsingFlatMap( source, mapper );
+        Flux<R> resultExpected = source.map( mapper );
+
+        Utilities.assertEqual( true, resultActual, resultExpected );
+    }
+
+    public void testFilterUsingFlatMap1( )
+    {
+        filterUsingFlatMapHelper( Flux.just( "Sloth", "Cheetah", "Snail" ), animal -> animal.equals( "Sloth" ) );
+    }
+
+    public void testFilterUsingFlatMap2( )
+    {
+        filterUsingFlatMapHelper( Flux.empty( ), value -> true );
+    }
+
+    public void testFilterUsingFlatMap3( )
+    {
+        filterUsingFlatMapHelper( Flux.range( 0, 10 ), value -> value % 2 == 0 );
+    }
+
+    protected <T> void filterUsingFlatMapHelper( Flux<T> source, Predicate<? super T> predicate )
+    {
+        Flux<T> resultActual = Exercise6.filterUsingFlatMap( source, predicate );
+        Flux<T> resultExpected = source.filter( predicate );
+
+        Utilities.assertEqual( true, resultActual, resultExpected );
     }
 
     public void testFlatMapUsingMerge1( )
@@ -102,5 +149,4 @@ public class Exercise6Test extends TestCase
 
         Utilities.assertEqual( true, resultActual, resultExpected );
     }
-
 }

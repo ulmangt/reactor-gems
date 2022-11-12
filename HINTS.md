@@ -32,7 +32,7 @@ This document contains hints organized by exercise.
 
 ### emitFirstValidAnimalName
 
-1. Use [Mono.filterWhen](https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html#filterWhen-java.util.function.Function-) to apply `animalNameChecker` to each `animalName` Publisher.
+1. Use [Mono.filterWhen](https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html#filterWhen-java.util.function.Function-) to create a new `Collection` of `Mono` which have been filtered using `animalNameChecker`.
 
 1. Use [Mono.firstWithValue](https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html#firstWithValue-java.lang.Iterable-) to choose the first `animalName` publisher to return (after filtering them based on `animalNameChecker` using `Mono.filterWhen`).
 
@@ -43,6 +43,10 @@ This document contains hints organized by exercise.
 1. Use [Flux.map](https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html#map-java.util.function.Function-).
 
 ## Exercise 6
+
+### filterUsingFlatMap
+
+1. `flatMap( )` can return `Flux.empty( )`. Utilize that and the provided predicate function to filter out values.
 
 ### flatMapUsingMerge
 

@@ -2,10 +2,12 @@ package com.github.ulmangt.reactorgems;
 
 import java.util.IdentityHashMap;
 import java.util.function.Function;
+import java.util.function.Predicate;
 
 import org.reactivestreams.Publisher;
 
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 /**
  * Exercise 4 - Relationships between operators
@@ -14,6 +16,28 @@ import reactor.core.publisher.Flux;
  */
 public class Exercise6
 {
+    /**
+     * Implement {@code map} using {@code flatMap}.
+     *
+     * Calling {@code mapUsingFlatMap( source, mapper )} should return the same sequence {@code source.map( mapper)}
+     * but implemented calling {@code flatMap} instead of {@code map}.
+     */
+    public static <T,R> Flux<R> mapUsingFlatMap( Flux<T> source, Function<? super T, ? extends R> mapper )
+    {
+        return source.flatMap( value -> Flux.just( mapper.apply( value ) ) );
+    }
+
+    /**
+     * Implement {@code filter} using {@code flatMap}.
+     *
+     * Calling {@code filterUsingFlatMap( source, mapper )} should return the same sequence {@code source.filter( mapper)}
+     * but implemented calling {@code flatMap} instead of {@code filter}.
+     */
+    public static <T> Flux<T> filterUsingFlatMap( Flux<T> source, Predicate<? super T> predicate )
+    {
+        return source.flatMap( value -> predicate.test( value ) ? Flux.just( value ) : Flux.empty( ) );
+    }
+
     /**
      * Implement {@code flatMap} using {@code merge} and {@code map}.
      *
