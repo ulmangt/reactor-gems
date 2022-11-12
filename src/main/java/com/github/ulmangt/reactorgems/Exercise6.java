@@ -1,5 +1,6 @@
 package com.github.ulmangt.reactorgems;
 
+import java.util.IdentityHashMap;
 import java.util.function.Function;
 
 import org.reactivestreams.Publisher;
@@ -38,5 +39,13 @@ public class Exercise6
     public static <T> Flux<T> mergeUsingFlatMap( Publisher<? extends Publisher<? extends T>> source )
     {
         return Flux.from( source ).flatMap( Function.identity( ) );
+    }
+
+    /**
+     * Follow a similar pattern as above to implement {@code Flux.switchOnNext} using {@code Flux.switchMap} and {@code Flux.merge}.
+     */
+    public static <T> Flux<T> switchOnNextUsingMerge( Publisher<? extends Publisher<? extends T>> mergedPublishers )
+    {
+        return Flux.merge( Flux.from( mergedPublishers ).switchMap( Function.identity( ) ) );
     }
 }
