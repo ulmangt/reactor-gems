@@ -18,19 +18,19 @@ public class Exercise4
     public static final Logger logger = Logger.getLogger( Exercise4.class.getName( ) );
 
     /**
-     * Return a Publisher which emits the value of the first animalName for which
-     * animalNameChecker returns a Mono which emits true.
+     * Return a Publisher which emits the value of the first Publisher int the animalNames
+     * Collection which emits a value for which animalNameChecker returns a Mono which emits true.
      *
      * If none of the animalNames match the animalNameChecker, complete without emitting any name.
      *
-     * For example, if Publishers in animalNames are:
+     * For example, if Publishers in animalNames emit the following values in increasing time order...
      *
-     * --- Cheetah --------------------
-     * ------------- Sloth ------------
-     * ---------------------- Snail ---
+     * --- Cheetah -------------------
+     * ------------- Sloth -----------
+     * --------------------- Snail ---
      * ( increasing time --> )
      *
-     * And animalNameChecker emits true for animalNames starting with "s" then we should emit "Sloth"
+     * ...and animalNameChecker emits true for animalNames starting with "s" then we should emit "Sloth".
      *
      * @param animalNames a Collection of Publishers which emit animal names
      * @param animalNameChecker a Function which takes an animal name and returns a
