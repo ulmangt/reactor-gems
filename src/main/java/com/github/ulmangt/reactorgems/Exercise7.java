@@ -69,9 +69,7 @@ public class Exercise7
      */
     public static <V> Publisher<V> emitPreOrder( Mono<Node<V>> root )
     {
-        return root
-                .expandDeep( node -> merge( justOrEmpty( node.left ), justOrEmpty( node.right ) ) )
-                .map( Node::value );
+        return null;
     }
 
     /**
@@ -81,12 +79,6 @@ public class Exercise7
      */
     public static <V> Publisher<V> emitInOrder( Mono<Node<V>> root )
     {
-        return root.flatMapMany( node ->
-                merge(
-                        emitInOrder( justOrEmpty( node.left ) ),
-                        just( node.value ),
-                        emitInOrder( justOrEmpty( node.right ) )
-                )
-        );
+        return null;
     }
 }

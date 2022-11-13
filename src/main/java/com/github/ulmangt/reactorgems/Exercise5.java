@@ -18,6 +18,6 @@ public class Exercise5
      */
     public static Publisher<String> sayHello( Flux<String> animalNames )
     {
-        return animalNames.map( name -> "Hello " + name );
+        return null;
     }
 }

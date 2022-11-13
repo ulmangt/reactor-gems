@@ -30,7 +30,7 @@ public class Exercise6
      */
     public static <T,R> Flux<R> mapUsingFlatMap( Flux<T> source, Function<? super T, ? extends R> mapper )
     {
-        return source.flatMap( value -> Flux.just( mapper.apply( value ) ) );
+        return null;
     }
 
     /**
@@ -41,7 +41,7 @@ public class Exercise6
      */
     public static <T> Flux<T> filterUsingFlatMap( Flux<T> source, Predicate<? super T> predicate )
     {
-        return source.flatMap( value -> predicate.test( value ) ? Flux.just( value ) : Flux.empty( ) );
+        return null;
     }
 
     /**
@@ -52,7 +52,7 @@ public class Exercise6
      */
     public static <T,R> Flux<R> concatMapUsingFlatMap( Flux<T> source, Function<? super T,? extends Publisher<? extends R>> mapper )
     {
-        return source.flatMap( mapper, 1 );
+        return null;
     }
 
     /**
@@ -65,7 +65,7 @@ public class Exercise6
      */
     public static <T,R> Flux<R> flatMapUsingMerge( Flux<T> source, Function<? super T,? extends Publisher<? extends R>> mapper )
     {
-        return Flux.merge( source.map( mapper ) );
+        return null;
     }
 
     /**
@@ -73,7 +73,7 @@ public class Exercise6
      */
     public static <T> Flux<T> mergeUsingFlatMap( Publisher<? extends Publisher<? extends T>> source )
     {
-        return Flux.from( source ).flatMap( Function.identity( ) );
+        return null;
     }
 
     /**
@@ -81,6 +81,6 @@ public class Exercise6
      */
     public static <T> Flux<T> switchOnNextUsingMerge( Publisher<? extends Publisher<? extends T>> mergedPublishers )
     {
-        return Flux.merge( Flux.from( mergedPublishers ).switchMap( Function.identity( ) ) );
+        return null;
     }
 }

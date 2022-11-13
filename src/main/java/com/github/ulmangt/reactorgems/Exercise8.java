@@ -1,8 +1,5 @@
 package com.github.ulmangt.reactorgems;
 
-import java.util.NoSuchElementException;
-import java.util.function.BooleanSupplier;
-
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -24,17 +21,6 @@ public class Exercise8
      */
     public static <T> Mono<Boolean> sequenceEqual( Flux<T> first, Flux<T> second )
     {
-        // emits true if the two fluxes did not emit the same number of elements, nothing otherwise
-        var notSameSize = Mono.zip( first.count( ), second.count( ) )
-                .map( tuple -> tuple.getT1( ) != tuple.getT2( ) );
-
-        // emits true if any of the corresponding elements of emitted by the two fluxes are not equal, nothing otherwise
-        var notSameContent = Flux.zip( first, second )
-                .any( tuple -> !tuple.getT1( ).equals( tuple.getT2( ) ) );
-
-        // firstWithValue allows us to short circuit the comparison if any pairwise values do not match
-        // the map call flips the predicate, since we want to return false if either notSameContent or notSameSize return true
-        return Mono.firstWithValue( notSameSize, notSameContent )
-                .map( value -> !value );
+        return null;
     }
 }

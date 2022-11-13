@@ -16,7 +16,7 @@ public class Exercise2
      */
     public static Publisher<String> emitStringSlowly( Mono<String> slothName )
     {
-        return slothName.delayElement( Duration.ofSeconds( 10 ) );
+        return null;
     }
 
     /**
@@ -25,9 +25,7 @@ public class Exercise2
      */
     public static Publisher<String> emitStringSlowlyOrQuickly( Mono<String> animalName )
     {
-        return animalName.flatMap( name -> name.equals( "Sloth" ) ?
-                Mono.just( "Sloth" ).delayElement( Duration.ofSeconds( 10 ) ) :
-                Mono.just( name ) );
+        return null;
     }
 
 }

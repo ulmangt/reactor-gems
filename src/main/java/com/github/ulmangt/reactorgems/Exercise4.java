@@ -41,12 +41,6 @@ public class Exercise4
             Collection<Mono<String>> animalNames,
             Function<String,Mono<Boolean>> animalNameChecker )
     {
-        var animalNamesMatchingChecker = animalNames
-                .stream( )
-                .map( name -> name.filterWhen( animalNameChecker ) )
-                .collect( Collectors.toList( ) );
-
-        return Mono.firstWithValue( animalNamesMatchingChecker )
-                .onErrorResume( NoSuchElementException.class, throwable -> Mono.empty( ) );
+        return null;
     }
 }

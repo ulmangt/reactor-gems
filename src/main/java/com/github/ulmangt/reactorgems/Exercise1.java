@@ -16,7 +16,7 @@ public class Exercise1
      */
     public static Publisher<String> emitString( )
     {
-        return Mono.just( "Sloth" );
+        return null;
     }
 
     /**
@@ -24,6 +24,6 @@ public class Exercise1
      */
     public static Publisher<String> emitRuntimeException( )
     {
-        return Mono.error( new RuntimeException( ) );
+        return null;
     }
 }

@@ -17,6 +17,6 @@ public class Exercise3
      */
     public static Publisher<String> emitSlothOnly( Mono<String> animalName )
     {
-        return animalName.filter( name -> name.equals( "Sloth" ) );
+        return null;
     }
 }
