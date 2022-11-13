@@ -4,6 +4,8 @@ import static reactor.core.publisher.Flux.just;
 import static reactor.core.publisher.Flux.merge;
 import static reactor.core.publisher.Mono.justOrEmpty;
 
+import java.util.function.Function;
+
 import org.reactivestreams.Publisher;
 
 import reactor.core.publisher.Flux;
@@ -18,16 +20,33 @@ public class Exercise7
     {
         public final V value;
         public final Node<V> left;
-        public final Node<V>  right;
-        public Node( V value, Node<V>  left, Node<V> right )
+        public final Node<V> right;
+
+        public Node( V value, Node<V> left, Node<V> right )
         {
             this.value = value;
             this.left = left;
             this.right = right;
         }
+
         public Node( V value )
         {
             this( value, null, null );
+        }
+
+        public V value( )
+        {
+            return this.value;
+        }
+
+        public Node<V> left( )
+        {
+            return this.left;
+        }
+
+        public Node<V> right( )
+        {
+            return this.right;
         }
     }
 
@@ -48,10 +67,26 @@ public class Exercise7
      *
      * When passed the root node, emitPreOrder should emit: 9, 5, 2, 6, 13, 10, 20
      */
-    public static <V> Publisher<V> emitPreOrder( Node<V> root )
+    public static <V> Publisher<V> emitPreOrder( Mono<Node<V>> root )
     {
-        return just( root )
+        return root
                 .expandDeep( node -> merge( justOrEmpty( node.left ), justOrEmpty( node.right ) ) )
-                .map( node -> node.value );
+                .map( Node::value );
+    }
+
+    /**
+     * Emit the values in the tree rooted at the provided node in a in-order (sorted) traversal.
+     *
+     * For the example tree from {@link #emitPreOrder(Mono)}, emitInOrder should emit: 2, 5, 6, 9, 10, 13, 20
+     */
+    public static <V> Publisher<V> emitInOrder( Mono<Node<V>> root )
+    {
+        return root.flatMapMany( node ->
+                merge(
+                        emitInOrder( justOrEmpty( node.left ) ),
+                        just( node.value ),
+                        emitInOrder( justOrEmpty( node.right ) )
+                )
+        );
     }
 }

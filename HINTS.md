@@ -64,6 +64,10 @@ This document contains hints organized by exercise.
 
 1. Use [Flux.expandDeep](https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html#expandDeep-java.util.function.Function-)
 
+### emitInOrder
+
+1. The built in `Flux.expand( )` and `Flux.expandDeep( )` won't help here. Consider a recursive implementation instead.
+
 ## Exercise 8
 
 ### sequenceEqual

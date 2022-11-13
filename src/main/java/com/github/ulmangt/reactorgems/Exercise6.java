@@ -1,26 +1,32 @@
 package com.github.ulmangt.reactorgems;
 
-import java.util.IdentityHashMap;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
 import org.reactivestreams.Publisher;
 
 import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
 /**
  * Exercise 4 - Relationships between operators
  *
- * See https://github.com/spring-attic/reactive-streams-commons/issues/21 for further discussion.
+ * Some of these exercises (as well as inspiration for the name of this project) are based on the
+ * excellent discussion here: https://github.com/spring-attic/reactive-streams-commons/issues/21
  */
 public class Exercise6
 {
     /**
      * Implement {@code map} using {@code flatMap}.
      *
+     * @param <T> The input data type of the Flux to be transformed
+     * @param <R> The type to transform the input Flux into
+     * @param source The source Flux to be transformed
+     * @param mapper The function mapping from T to R
+     *
      * Calling {@code mapUsingFlatMap( source, mapper )} should return the same sequence {@code source.map( mapper)}
      * but implemented calling {@code flatMap} instead of {@code map}.
+     *
+     * @see <a href="https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html#flatMap-java.util.function.Function-">flatMap</a>
      */
     public static <T,R> Flux<R> mapUsingFlatMap( Flux<T> source, Function<? super T, ? extends R> mapper )
     {
@@ -55,12 +61,6 @@ public class Exercise6
      * Calling {@code flatMapUsingMerge( source, mapper )} should return the same sequence {@code source.flatMap( mapper)}
      * but implemented calling {@code merge} instead of {@code flatMap}.
      *
-     * @param <T> The input data type of the Flux to be transformed
-     * @param <R> The type to transform the input Flux into
-     * @param source The source Flux to be transformed
-     * @param mapper The function mapping from T to R
-     *
-     * @see <a href="https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html#flatMap-java.util.function.Function-">flatMap</a>
      * @see <a href="https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html#merge-org.reactivestreams.Publisher-">merge</a>
      */
     public static <T,R> Flux<R> flatMapUsingMerge( Flux<T> source, Function<? super T,? extends Publisher<? extends R>> mapper )
