@@ -92,8 +92,6 @@ public class Exercise7Test extends TestCase
 
     public void testInOrder1( )
     {
-        System.out.println( Flux.from( Exercise7.emitInOrder( just( tree1 ) ) ).collectList( ).block( ) );
-
         Utilities.assertEqual( Boolean.TRUE, Exercise7.emitInOrder( just( tree1 ) ), inOrderTree1 );
     }
 
