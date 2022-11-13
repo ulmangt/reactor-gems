@@ -1,14 +1,14 @@
 # reactor-gems
 Collection of short Project Reactor tutorials written as coding exercises.
 
-To use this project:
+How to use this project:
 
-1. Check out the master branch.
+1. Check out the "master" branch.
 1. Open src/main/java/com/github/ulmangt/reactorgems/Exercise1.java
-1. Fill in the implementation of each method, following the instructions in the Javadoc.
+1. Fill in the implementation of each method, following the instructions in the Javadocs.
 1. If you need a hint, check out the HINTS.md
-1. To verify your answer, run "mvn install" on the project to run the unit tests.
-1. To see solutions to each problem, check out the answers branch.
+1. To verify your answer, run "mvn test -Dtest=Exercise1Test" on the project to run the unit tests for exercise 1.
+1. To see solutions to each problem, check out the "answers" branch.
 
 ## Branches
 
