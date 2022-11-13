@@ -57,3 +57,21 @@ This document contains hints organized by exercise.
 ### mergeUsingFlatMap
 
 1. Normally `flatMap( )` is used to modify the values emitted by its source Publisher. But `Flux.merge( )` does't do that. So try passing `Function.identity( )` or `input->input` as the mapper argument to `flatMap( )`.
+
+## Exercise 7
+
+### emitPreOrder
+
+1. Use [Flux.expandDeep](https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html#expandDeep-java.util.function.Function-)
+
+## Exercise 8
+
+### sequenceEqual
+
+1. Use `Flux.zip` to operate on pairwise elements from each publisher.
+
+2. Use `Flux.any` to compare pairwise elements and short-circuit when a non-match is found.
+
+3. Using `Flux.zip` / `Flux.any` as suggested in hints 1 and 2 isn't sufficient if the two producers start with matching sequences but one produces additional values (since `Flux.zip` will stop producing Tuples once either publisher completes). You'll need an additional check that once both producers complete, they emitted the same number of elements.
+
+4. Use `Mono.firstWithValue` to combine the two checks from the above hints and retain the short-circuiting behavior.
