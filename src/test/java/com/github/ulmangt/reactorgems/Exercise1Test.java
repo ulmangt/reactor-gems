@@ -31,7 +31,6 @@ public class Exercise1Test extends TestCase
     public void testEmitRuntimeException( )
     {
         StepVerifier.create( Exercise1.emitRuntimeException( ) )
-                .expectError( RuntimeException.class )
-                .verify( );
+                .verifyError( RuntimeException.class );
     }
 }
