@@ -93,3 +93,13 @@ This document contains hints organized by exercise.
 2. `Flux.index` can be combined with `Flux.filter` to remove the desired items.
 
 3. Handling `n == 0` may require a simple special case (just return `Flux.empty( )`).
+
+## Exercise 10
+
+### createSlothSaysService
+
+1. Use [Mono.deferContextual](https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html#deferContextual-java.util.function.Function-) to retrieve the String value associated with SlothSaysService.SlothNameKey.
+
+### useSlothSaysService
+
+1. Use [Mono.contextWrite](https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Mono.html#contextWrite-reactor.util.context.ContextView-) to set the value of SlothSaysService.SlothNameKey.
