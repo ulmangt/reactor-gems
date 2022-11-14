@@ -79,3 +79,17 @@ This document contains hints organized by exercise.
 3. Using `Flux.zip` / `Flux.any` as suggested in hints 1 and 2 isn't sufficient if the two producers start with matching sequences but one produces additional values (since `Flux.zip` will stop producing Tuples once either publisher completes). You'll need an additional check that once both producers complete, they emitted the same number of elements.
 
 4. Use `Mono.firstWithValue` to combine the two checks from the above hints and retain the short-circuiting behavior.
+
+## Exercise 9
+
+### findThirdItemOrSloth
+
+1. Use [Flux.elementAt](https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html#elementAt-int-T-)
+
+### emitEveryNthElement
+
+1. Use [Flux.index](https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html#index--) to get the index of each item emitted by the source Provider.
+
+2. `Flux.index` can be combined with `Flux.filter` to remove the desired items.
+
+3. Handling `n == 0` may require a simple special case (just return `Flux.empty( )`).
