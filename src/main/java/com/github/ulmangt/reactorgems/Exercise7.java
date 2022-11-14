@@ -4,13 +4,13 @@ import static reactor.core.publisher.Flux.just;
 import static reactor.core.publisher.Flux.merge;
 import static reactor.core.publisher.Mono.justOrEmpty;
 
-import java.util.function.Function;
-
 import org.reactivestreams.Publisher;
 
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+/**
+ * Exercise 7 - Binary Tree Traversal
+ */
 public class Exercise7
 {
     /**

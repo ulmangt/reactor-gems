@@ -79,6 +79,6 @@ public class Exercise4Test extends TestCase
         Function<String, Mono<Boolean>> animalNameChecker = ( name ) -> Mono.just( name.startsWith( "S" ) );
 
         StepVerifier.withVirtualTime( ( ) -> Exercise4.emitFirstValidAnimalName( animalNames, animalNameChecker ) )
-                .expectError( RuntimeException.class );
+                .verifyError( RuntimeException.class );
     }
 }
